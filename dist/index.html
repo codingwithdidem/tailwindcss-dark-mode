@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwindcss</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+  </head>
+  <body class="bg-white dark:bg-black min-h-screen">
+    <button
+      id="toggleTheme"
+      class="block bg-blue-500 text-blue-200 px-6 py-2 rounded mt-6 ml-6"
+    >
+      Toggle
+    </button>
+    <div class="flex items-center justify-center">
+      <div
+        class="mt-10 bg-gray-100 dark:bg-gray-800 rounded shadow border border-gray-400 p-9 max-w-md text-center"
+      >
+        <h5 class="text-3xl font-bold mb-4 mt-0 text-black dark:text-white">
+          Tailwindcss Dark Mode
+        </h5>
+        <p class="text-gray-500 text-md font-medium dark:text-white">
+          Prefers Color Scheme ('media') | Manually ('class')
+        </p>
+        <button
+          class="mt-6 text-sm bg-purple-700 p-3 border border-purple-600 text-white rounded"
+        >
+          Hadi Başlayalım
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("toggleTheme")
+        .addEventListener("click", function () {
+          let htmlClasses = document.querySelector("html").classList;
+
+          if (localStorage.theme === "dark") {
+            htmlClasses.remove("dark");
+            localStorage.removeItem("theme");
+          } else {
+            htmlClasses.add("dark");
+            localStorage.theme = "dark";
+          }
+        });
+    </script>
+  </body>
+</html>
